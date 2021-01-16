@@ -217,7 +217,6 @@ if(WIN32)
     set_target_properties(wxmaxima PROPERTIES VS_DPI_AWARE "PerMonitor")
   endif()
 elseif(APPLE)
-    configure_file(${CMAKE_SOURCE_DIR}/data/Info.plist.in ${CMAKE_CURRENT_BINARY_DIR}/Info.plist)
     set(MACOSX_BUNDLE_NAME wxmaxima)
     set(MACOSX_BUNDLE_ICON_FILE wxmac.icns)
     set(MACOSX_BUNDLE TRUE)
@@ -225,7 +224,7 @@ elseif(APPLE)
     add_executable(wxmaxima ${SOURCE_FILES})
     set_target_properties(wxmaxima PROPERTIES
         MACOSX_BUNDLE TRUE
-	MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_BINARY_DIR}/Info.plist
+	MACOSX_BUNDLE_INFO_PLIST ${CMAKE_BINARY_DIR}/data/Info.plist
         RESOURCE "${RESOURCE_FILES}"
     )
 
