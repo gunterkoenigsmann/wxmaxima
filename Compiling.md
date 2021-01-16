@@ -57,9 +57,12 @@ https://cmake.org/download/ and use that.
 
 #### Mac Os: Creating a portable .apk and .dmg installer
 
-Add the `-DMACOSX_BUNDLE=YES` to the initial cmake invocation. E.g.
+This requires wxWidgets to be installed, e.G. using macports
 
-    cmake -DMACOSX_BUNDLE=YES -G Ninja -S . -B ../build-wxm
+    mkdir ../build-wxm
+    cmake -S . -B ../build-wxm -DCMAKE_INSTALL_PREFIX=.
+    cmake --build ../build-wxm
+    cmake --build ../build-wxm --install
     
 #### Ubuntu or Debian build prerequisites
 
