@@ -28,7 +28,10 @@ jobs:
     - name: configure
       run: |
            mkdir ../build-wxm
-           cmake -S . -B -G Ninja ../build-wxm -DCMAKE_INSTALL_PREFIX=. -DCMAKE_UNITY_BUILD_BATCH_SIZE=8 -DWXM_UNIT_TESTS=YES -DCMAKE_UNITY_BUILD=YES
+           cmake -S . -B ../build-wxm -G Ninja -DCMAKE_INSTALL_PREFIX=. -DCMAKE_UNITY_BUILD_BATCH_SIZE=8 -DWXM_UNIT_TESTS=YES -DCMAKE_UNITY_BUILD=YES
+    - name: plist_check
+      run: |
+           ls -l ../build-wxm/data/Info.plist
     - name: compile
       run: |
            cmake --build ../build-wxm
@@ -59,6 +62,9 @@ jobs:
       run: |
            mkdir ../build-wxm
            cmake -S . -B ../build-wxm -DCMAKE_INSTALL_PREFIX=.
+    - name: plist_check
+      run: |
+           ls -l ../build-wxm/data/Info.plist
     - name: compile
       run: |
            cmake --build ../build-wxm
