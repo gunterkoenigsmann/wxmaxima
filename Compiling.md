@@ -19,16 +19,16 @@ Assume you start inside wxmaxima source tree root folder. Then:
         mkdir -p ../build-wxm
         cmake -G Ninja -S . -B ../build-wxm
         cmake --build ../build-wxm
-        sudo cmake --build ../build-wxm -- install
+        sudo cmake --install ../build-wxm
         
 - Using cmake 3.7-3.12
 
         mkdir -p ../build-wxm
         cd ../build-wxm
-        cmake -G Ninja ../wxmaxima
+        cmake ../wxmaxima
         cd ../wxmaxima
         cmake --build ../build-wxm
-        sudo cmake --build ../build-wxm -- install
+        sudo cmake --install ../build-wxm
 
 If you want to install into a special prefix (not `/usr/local`), add
 `-DCMAKE_INSTALL_PREFIX:PATH=/your/installation/prefix` to the first
