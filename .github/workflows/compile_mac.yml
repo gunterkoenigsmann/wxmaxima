@@ -27,20 +27,11 @@ jobs:
            set +e
     - name: configure
       run: |
-           export CXXFLAGS="-Wall -Wextra -ansi -std=c++11"
-           export LANG=en_US.UTF-8
-           mkdir build
-           touch build build/build.ninja
-           cd build
-           cmake -G "Ninja" -DCMAKE_UNITY_BUILD=YES -DCMAKE_BUILD_TYPE=debug -DCMAKE_UNITY_BUILD_BATCH_SIZE=8 -DWXM_UNIT_TESTS=YES -DCMAKE_INSTALL_PREFIX=`pwd` ..
-           cd ..
+           mkdir ../build-wxm
+           cmake -S . -B ../build-wxm -DCMAKE_INSTALL_PREFIX=. -DCMAKE_UNITY_BUILD_BATCH_SIZE=8 -DWXM_UNIT_TESTS=YES -DCMAKE_UNITY_BUILD=YES
     - name: compile
       run: |
-           cd build
-           cmake --build .
-           cd ..
+           cmake --build ../build-wxm
     - name: install
       run: |
-           cd build
-           cmake --install .
-           cd ..
+           cmake --build ../build-wxm --install
