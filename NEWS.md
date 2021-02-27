@@ -1,8 +1,9 @@
-# Current
+# 21.02.0
  * A Spanish translation update by cyphra
- * Replaced openMP by c++11's built-in thread handling. This should improve 
-   stability at the cost of making loading files with lots of images slower.
- * Language selection now works on Windows.
+ * Replaced openMP by C++11's built-in thread handling. This should improve 
+   stability at the cost of making loading files with lots of images slower
+ * Many bug fixes
+ * Language selection now works on Windows
 
 # 21.01.0
  * Chinese translation updates by 刘荣.

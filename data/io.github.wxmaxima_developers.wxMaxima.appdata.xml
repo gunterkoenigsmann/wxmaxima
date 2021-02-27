@@ -56,6 +56,22 @@
          to time zone variations 
          You can see current time at: https://en.wikipedia.org/wiki/ISO_8601
     -->
+   <release version="21.02.0" date="2021-02-27T06:06:00Z">
+      <description>
+	<p>
+	  Bugfix release: Reproducible crashes on loading files with images on MacOs.
+	</p>
+	<ul>
+	  <li> A Spanish translation update by cyphra</li>
+	  <li> Replaced openMP by C++11's built-in thread handling</li>
+	  <li> Many bug fixes</li>
+	  <li> Language selection now works on Windows</li>
+	</ul>
+      </description>
+    </release> 
+
+
+    
    <release version="21.01.0" date="2021-01-23T19:29:00Z">
       <description>
 	<p>
