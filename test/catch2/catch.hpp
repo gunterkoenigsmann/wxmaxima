@@ -7929,13 +7929,9 @@ namespace Catch {
     // If we can use inline assembler, do it because this allows us to break
     // directly at the location of the failing check instead of breaking inside
     // raise() called from it, i.e. one stack frame below.
-    #if defined(__GNUC__) && (defined(__i386) || defined(__x86_64))
-        #define CATCH_TRAP() asm volatile ("int $3") /* NOLINT */
-    #else // Fall back to the generic way.
         #include <signal.h>
 
         #define CATCH_TRAP() raise(SIGTRAP)
-    #endif
 #elif defined(_MSC_VER)
     #define CATCH_TRAP() __debugbreak()
 #elif defined(__MINGW32__)
