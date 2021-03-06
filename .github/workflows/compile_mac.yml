@@ -28,13 +28,16 @@ jobs:
            set +e
     - name: download_wxWidgets
       run: |
-           wget https://github.com/wxWidgets/wxWidgets/releases/download/v${{env.WXVERSION}}/wxWidgets-${{env.WXVERSION}}.tar.gz
-           tar xvf wxWidgets-${{env.WXVERSION}}.tar.gz
+           wget https://github.com/wxWidgets/wxWidgets/releases/download/v${{env.WXVERSION}}/wxWidgets-${{env.WXVERSION}}.zip
+           mkdir wxWidgets_src
+           cd wxWidgets_src
+           unzip ../wxWidgets-${{env.WXVERSION}}.zip
+           cd ..
     - name: compile_wxWidgets
       run: |
            mkdir wxWidgets_build
            cd wxWidgets_build
-           cmake ../wxWidgets-${{env.WXVERSION}} -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64"
+           cmake wxWidgets_src -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64"
            make
            sudo make install
            cd ..
