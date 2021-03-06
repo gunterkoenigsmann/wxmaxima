@@ -4,6 +4,7 @@ on: [push]
 
 env:
   BUILD_TYPE: Release
+  WXVERSION: 3.1.4
 
 jobs:
   compile_Ninja:
@@ -22,9 +23,21 @@ jobs:
            export HOMEBREW_NO_AUTO_UPDATE=1
            set -e
            brew upgrade cmake
-           brew install gettext ninja pandoc wxwidgets
+           brew install gettext ninja pandoc wget
            brew link cmake
            set +e
+    - name: download_wxWidgets
+      run: |
+           wget https://github.com/wxWidgets/wxWidgets/releases/download/v${{env.WXVERSION}}/wxWidgets-${{env.WXVERSION}}.tar.gz
+           tar xvf wxWidgets-${{env.WXVERSION}}.tar.gz
+    - name: compile_wxWidgets
+      run: |
+           mkdir wxWidgets_build
+           cd wxWidgets_build
+           cmake ../wxWidgets-${{env.WXVERSION}} -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64"
+           make
+           sudo make install
+           cd ..
     - name: configure
       run: |
            mkdir ../build-wxm
