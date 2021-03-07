@@ -28,17 +28,29 @@ jobs:
            set +e
     - name: download_wxWidgets
       run: |
-           wget https://github.com/wxWidgets/wxWidgets/releases/download/v${{env.WXVERSION}}/wxWidgets-${{env.WXVERSION}}.zip
-           mkdir wxWidgets_src
-           cd wxWidgets_src
-           unzip ../wxWidgets-${{env.WXVERSION}}.zip
-           cd ..
+           if -n test -d wxWidgets_src-${{env.WXVERSION}}; then
+	       echo "exWidgets already downloaded"
+	   else
+               wget https://github.com/wxWidgets/wxWidgets/releases/download/v${{env.WXVERSION}}/wxWidgets-${{env.WXVERSION}}.zip
+               mkdir wxWidgets_src-${{env.WXVERSION}}
+               cd wxWidgets_src-${{env.WXVERSION}}
+               unzip ../wxWidgets-${{env.WXVERSION}}.zip
+               cd ..
+	   fi
     - name: compile_wxWidgets
       run: |
-           mkdir wxWidgets_build
-           cd wxWidgets_build
-           cmake ../wxWidgets_src -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64"
-           make
+           if -n test -d wxWidgets_build-${{env.WXVERSION}}; then
+	       echo "exWidgets already compiledd"
+	   else
+               mkdir wxWidgets_build-${{env.WXVERSION}}
+               cd wxWidgets_build-${{env.WXVERSION}}
+               cmake ../wxWidgets_src-${{env.WXVERSION}} -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64"
+               make
+               cd ..
+	   fi
+    - name: install_wxWidgets
+      run: |
+           cd wxWidgets_build-${{env.WXVERSION}}
            sudo make install
            cd ..
     - name: configure
