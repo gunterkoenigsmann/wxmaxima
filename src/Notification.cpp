@@ -64,12 +64,6 @@ void Notification::SetGroup(wxWindow *parent)
   wxNotificationMessage::SetParent(parent);
 }
 
-bool Notification::Close()
-{
-  m_errorNotificationCell = NULL;
-  return wxNotificationMessage::Close();
-}
-
 void Notification::OnClick(wxCommandEvent &WXUNUSED(event))
 {
   if (GetGroup())

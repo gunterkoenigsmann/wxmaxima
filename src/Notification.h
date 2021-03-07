@@ -64,8 +64,6 @@ public:
   void SetGroup(wxWindow *parent);
   //! Returns a pointer to the main window or NULL, if no main window is set.
   wxWindow *GetGroup() { return m_parent; }
-  //! Tell the operating system that the notification may be closed.
-  bool Close() NOTIFI_OVERRIDE;
   //! The cell we signal an error for
   GroupCell *m_errorNotificationCell;
 private:
