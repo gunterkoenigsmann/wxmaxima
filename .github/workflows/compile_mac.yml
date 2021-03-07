@@ -36,7 +36,7 @@ jobs:
                cd wxWidgets_src-${{env.WXVERSION}}
                unzip ../wxWidgets-${{env.WXVERSION}}.zip
                cd ..
-          fi
+           fi
     - name: compile_wxWidgets
       run: |
            if -n test -d wxWidgets_build-${{env.WXVERSION}}; then
