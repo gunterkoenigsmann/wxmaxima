@@ -29,25 +29,25 @@ jobs:
     - name: download_wxWidgets
       run: |
            if -n test -d wxWidgets_src-${{env.WXVERSION}}; then
-	       echo "exWidgets already downloaded"
-	   else
+               echo "exWidgets already downloaded"
+           else
                wget https://github.com/wxWidgets/wxWidgets/releases/download/v${{env.WXVERSION}}/wxWidgets-${{env.WXVERSION}}.zip
                mkdir wxWidgets_src-${{env.WXVERSION}}
                cd wxWidgets_src-${{env.WXVERSION}}
                unzip ../wxWidgets-${{env.WXVERSION}}.zip
                cd ..
-	   fi
+          fi
     - name: compile_wxWidgets
       run: |
            if -n test -d wxWidgets_build-${{env.WXVERSION}}; then
-	       echo "exWidgets already compiledd"
-	   else
+               echo "exWidgets already compiledd"
+           else
                mkdir wxWidgets_build-${{env.WXVERSION}}
                cd wxWidgets_build-${{env.WXVERSION}}
                cmake ../wxWidgets_src-${{env.WXVERSION}} -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64"
                make
                cd ..
-	   fi
+           fi
     - name: install_wxWidgets
       run: |
            cd wxWidgets_build-${{env.WXVERSION}}
